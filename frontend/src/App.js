@@ -6,6 +6,7 @@ import Home from './components/pages/Home';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import UserContext from './context/userContext';
+import Posts from './components/posts/posts'
 import './App.css';
 
 function App() {
@@ -21,9 +22,9 @@ function App() {
         localStorage.setItem("auth-token", "");
         token = "";
       }
-      const tokenResponse = await axios.post('http://localhost:5000/users/tokenIsValid', null, {headers: {"x-auth-token": token}});
+      const tokenResponse = await axios.post('/users/tokenIsValid', null, {headers: {"x-auth-token": token}});
       if (tokenResponse.data) {
-        const userRes = await axios.get("http://localhost:5000/users/", {
+        const userRes = await axios.get("/users/", {
           headers: { "x-auth-token": token },
         });
         setUserData({
@@ -44,6 +45,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
+          <Route path="/posts/:id" component={Posts} />
         </Switch>
         </UserContext.Provider>
     </BrowserRouter>
