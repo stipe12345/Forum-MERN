@@ -4,16 +4,17 @@ import { Link } from 'react-router-dom';
 import Comments from '../comments/comments'
 import AddComments from '../addcomments/addcomments'
 import axios from 'axios';
+import '../../App.css';
 const Posts =props=> {
     const { userData } = useContext(UserContext);
     const [post,setPost]=useState(props.location.state);
-console.log(post)
-        return ( <div key={post._id}>
-             <Link className="btn btn-info" to={`/`}>Povratak</Link>
-            <label>{post.author}</label>
-            <label>{post.title}</label>
+
+        return ( <div className="post" key={post._id}>
+             <Link id="back" className="button" to={`/`}> Povratak</Link>
+            <h5>{post.author}</h5>
+            <h1>{post.title}</h1>
             <p>{post.text}</p>
-            {userData.user?<><AddComments/><Comments/></>:<Comments/>}
+            <Comments post={post._id}/>
           </div>);
 
 

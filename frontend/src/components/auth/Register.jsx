@@ -37,18 +37,18 @@ function Register () {
     };
    
     return ( 
-        <div className="register">
-            <h2>Register</h2>
+        <div className="postcontainer">
+            <h2>Registriraj se</h2>
             {error && <ErrorNotice message={error} clearError={() => setError(undefined)} />}
-            <form onSubmit={submit}>
+            <form className="container" onSubmit={submit}>
                 <label>Email: </label>
                 <input type="email" id="email" onChange={e => setEmail(e.target.value)}/>
-                <label>Password: </label>
+                <label>Zaporka: </label>
                 <input type="password" id="password" onChange={e => setPassword(e.target.value)}/>
                 <input type="password" placeholder="Confirm password" onChange={e => setPasswordCheck(e.target.value)}/>
-                <label>Display name </label>
+                <label>Ime za prikaz: </label>
                 <input type="text" id="dsplay-name" onChange={e => setDisplayName(e.target.value)}/>
-                <input type="submit" value="Register" className="btn btn-primary" />
+                <input type="submit" value="Register" className="button" />
             </form>
         </div>
         );

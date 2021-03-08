@@ -19,11 +19,11 @@ function AuthOptions () {
     return (
         <nav className="auth-options">
             {userData.user ? (
-                <button className="btn btn-primary mr-2" onClick={logout}>Logout</button>
+                <button className="button2" onClick={logout}>Odjavite se</button>
             ) : (
                 <>
-                <button className="btn btn-primary mr-2" onClick={register}>Sign Up</button>
-                <button className="btn btn-primary mr-2" onClick={login}>Login</button>
+                <button className="button2" onClick={register}>Registriraj se</button>
+                <button className="button2" onClick={login}>Prijavi se</button>
                 </>
             )}
         </nav>

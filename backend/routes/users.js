@@ -11,21 +11,21 @@ router.post("/register", async (req, res) => {
     // validate
 
     if (!email || !password || !passwordCheck)
-      return res.status(400).json({ msg: "Not all fields have been entered." });
+      return res.status(400).json({ msg: "Nisu sva polja unesena." });
     if (password.length < 5)
       return res
         .status(400)
-        .json({ msg: "The password needs to be at least 5 characters long." });
+        .json({ msg: "Zaporka mora sadržavati barem 5 znakova" });
     if (password !== passwordCheck)
       return res
         .status(400)
-        .json({ msg: "Enter the same password twice for verification." });
+        .json({ msg: "Zaporke se moraju poklapati" });
 
     const existingUser = await User.findOne({ email: email });
     if (existingUser)
       return res
         .status(400)
-        .json({ msg: "An account with this email already exists." });
+        .json({ msg: "Korisnički račun s tom email adresom već postoji" });
 
     if (!displayName) displayName = email;
 
@@ -50,16 +50,16 @@ router.post("/login", async (req, res) => {
 
     // validate
     if (!email || !password)
-      return res.status(400).json({ msg: "Not all fields have been entered." });
+      return res.status(400).json({ msg: "Sva polja moraju biti unesena." });
 
     const user = await User.findOne({ email: email });
     if (!user)
       return res
         .status(400)
-        .json({ msg: "No account with this email has been registered." });
+        .json({ msg: "Ne postoji račun sa ovom email adresom." });
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ msg: "Invalid credentials." });
+    if (!isMatch) return res.status(400).json({ msg: "Netočna lozinka" });
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     console.log("token",token);

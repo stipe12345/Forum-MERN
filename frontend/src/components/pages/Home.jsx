@@ -7,6 +7,7 @@ import axios from 'axios';
 function Home() {
   const { userData } = useContext(UserContext);
   const [post, setPost] = useState();
+  const[flag,setFlag]=useState(false);
   const history = useHistory();
   function pushlogin() {
     history.push('/login');
@@ -14,32 +15,40 @@ function Home() {
 
   useEffect(() => {
     async function fetchData() {
+      
       const posts = await axios.get('/allposts');
-      setPost(posts.data);
+      setPost(posts.data.reverse());
     }
     fetchData();
   }, []);
   const appendComment = async (postdata) => {
+    setFlag(!flag);
     const Addpost = await axios.post('/addposts', postdata);
     const Appendpost = Addpost.data;
-    setPost((prevstate) => [...prevstate, Appendpost]);
+    setPost((prevstate) => [ Appendpost,...prevstate]);
   };
+  const showform=()=>{
+      setFlag(!flag);
+   
+  }
   return (
-    <div>
+    <div className="postcontainer">
       {userData.user ? (
         <>
-          <h1>Welcome {userData.user.displayName}</h1>
-          {!post ? (
+          <h5>Dobrodošli {userData.user.displayName}</h5>
+        {flag?<AddPosts submitHandler={appendComment}/>:<button className="button" onClick={showform}>Dodaj novu objavu</button>}
+          <div className="container">
+            <h1>Najnovije objave</h1>{!post ? (
             <div>loading...</div>
           ) : (
             post.map((posts) => {
               return (
-                <div key={posts._id}>
-                  <label>{posts.author}</label>
-                  <label>{posts.title}</label>
+                <div key={posts._id} className="postframe">
+                  <h6>Objavio:{posts.author}</h6>
+                  <h2>{posts.title}</h2>
                   <p>{posts.text}</p>
                   <Link
-                    className="btn btn-info"
+                    className="button"
                     to={{ pathname: `/posts/${posts._id}`, state: posts }}
                   >
                     Otvori
@@ -47,24 +56,28 @@ function Home() {
                 </div>
               );
             })
-          )}
-          <AddPosts submitHandler={appendComment} />
+          )
+          }
+          </div>
         </>
       ) : (
         <>
-          <h2>You are not logged in</h2>
-          <button onClick={pushlogin}>Log in</button>
-          {!post ? (
+          <h2>Nisi prijavljen</h2>
+          <button className="button" onClick={pushlogin}>
+            Prijavi se
+          </button>
+          <div className="container">
+            <h1>Najnovije objave</h1>{!post ? (
             <div>loading...</div>
           ) : (
             post.map((posts) => {
               return (
-                <div key={posts._id}>
-                  <label>{posts.author}</label>
-                  <label>{posts.title}</label>
+                <div key={posts._id} className="postframe">
+                  <h6>Objavio:{posts.author}</h6>
+                  <h2>{posts.title}</h2>
                   <p>{posts.text}</p>
                   <Link
-                    className="btn btn-info"
+                    className="button"
                     to={{ pathname: `/posts/${posts._id}`, state: posts }}
                   >
                     Otvori
@@ -72,7 +85,9 @@ function Home() {
                 </div>
               );
             })
-          )}
+          )
+          }
+          </div>
         </>
       )}
     </div>

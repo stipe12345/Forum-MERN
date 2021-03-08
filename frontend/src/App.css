@@ -1,20 +1,220 @@
-.App {
+#root {
   text-align: center;
+  display:grid;
+  grid-template-columns: 2fr 8fr 2fr;
+  grid-template-rows:1fr 11fr 1fr;
 }
 
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url('./img/background.jpg');
+  background-repeat: repeat;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.postcontainer
+{background-color: white;
+  grid-row:2/3;
+  grid-column: 2/3;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-color: #66004d;
+  border-style: solid;
+  border-width: 2px;
+  border-top: none;
+  border-bottom:none;
+}
+
+.postframe
+{ 
+  padding:5px;
+  margin:5px;
+  display: flex;
+  flex-direction: column;
+  width:100%;
+  transition: all 0.5s;
+  border-top:#66004d 2px solid;
+
+}
+.postframe h6{
+  color:lightslategrey;
+  align-self: flex-start;
+  max-width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.postframe h2{
+  align-self: flex-start;
+  max-width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.postframe p{
+  align-self: flex-start;
+  max-width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.container
+{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.postframe:hover
+{
+  box-shadow:5px 10px #66004d;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #66004d;
+  transition: all 0.5s;
+  
+}
 .header{
+  grid-row:1/2;
+  grid-column:1/4;
   display:flex;
   align-items:center;
   justify-content: space-between;
   background-color: #66004d;
+  position:sticky;
+  height:10vh;
+  z-index: 2;
+  top:0;
 }
 .header a{
   color: #fff;
   text-decoration: none;
 }
-.register{
-  text-align:center;
+.header a:hover
+{
+  text-decoration: none;
+  color:white;
 }
-.register input{
-  /* display:block; */
+.footer
+{
+  grid-row:3/4;
+  grid-column:1/4;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  background-color: #66004d;
+  color:white;
+  height:10vh;
+  align-self: flex-end;
+}
+.button
+{width: 30%;
+  margin:10px;
+  padding-left:5px;
+  padding-right:5px;
+  align-self: center;
+  text-align: center;
+  background-color: white;
+  color: #66004d;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #66004d;
+  transition: all 0.5s;
+  text-decoration: none;
+}
+.button:hover{
+  background-color:#66004d;
+  color: white;
+  text-decoration: none;
+  border-style: 2px solid;
+  border-color: #66004d;
+  transition: all 0.5s;
+}
+.button2
+{margin:5px;
+  padding:5px;
+  text-align: center;
+  background-color:#66004d;
+  color: white;
+  border-radius: 5px;
+  border-style: 2px solid;
+  border-color: white;
+  transition: all 0.5s;
+  text-decoration: none;
+}
+.button2:hover{
+
+  background-color: white;
+  color: #66004d;
+  border:none;
+  text-decoration: none;
+  border-radius: 5px;
+  border-style: 2px solid;
+  border-color: white;
+  transition: all 0.5s;
+}
+.addpostform
+{width:70%;
+  display:flex;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.post
+{background-color: white;
+  grid-row:2/3;
+  grid-column: 2/3;
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 10px;
+}
+.post p{
+  width:90%;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.commentbox
+{width: 90%;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border: 2px solid #66004d;
+  text-align: start;
+  margin-left: 10px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+
+}
+.commentbox p{
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.comments
+{
+  width: 100%;
+  align-items: center;
+
+}
+#back
+{
+  
+  align-self: flex-start;
+  width: auto;
+}
+#objavi
+{
+  align-self: flex-start;
+  
 }

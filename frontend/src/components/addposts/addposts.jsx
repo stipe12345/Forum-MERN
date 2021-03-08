@@ -1,6 +1,7 @@
 import React, { useState,useContext } from 'react';
 import axios from 'axios';
 import UserContext from '../../context/userContext';
+
 const AddPosts =props=>  {
     const [title,setTitle]=useState();
     const [text,setText]=useState();
@@ -24,15 +25,15 @@ const AddPosts =props=>  {
     setText("");
   }
     return (
-      <form onSubmit={submit}>
-        <label>Naslov</label>
+      <form onSubmit={submit} className="addpostform">
+        <h3>Naslov</h3>
         <input
           type="text"
           onChange={e=>setTitle(e.target.value)}
         />
-        <label>Opis</label>
+        <h3>Opis</h3>
         <textarea  onChange={e=>setText(e.target.value)} />
-        <input type="submit" value="Objavi" />
+        <input className="button" type="submit" value="Objavi" />
       </form>
     );
   }

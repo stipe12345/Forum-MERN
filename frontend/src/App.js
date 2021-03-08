@@ -6,9 +6,9 @@ import Home from './components/pages/Home';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import UserContext from './context/userContext';
-import Posts from './components/posts/posts'
+import Posts from './components/posts/posts';
+import Footer from './components/layout/footer';
 import './App.css';
-
 function App() {
   const [ userData, setUserData] = useState({
     token: undefined,
@@ -47,6 +47,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/posts/:id" component={Posts} />
         </Switch>
+        <Footer/>
         </UserContext.Provider>
     </BrowserRouter>
   );
